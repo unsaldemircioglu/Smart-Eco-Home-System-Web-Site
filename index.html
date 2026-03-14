@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Eco Home Systems</title>
+<link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: rgb(14, 19, 23);
+    color: snow;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .nav-logo {
+    font-family: 'Syne', sans-serif;
+}
+
+/* GRID BACKGROUND */
+.grid-bg {
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+/* HERO GLOW */
+.hero-glow {
+    background: radial-gradient(circle at 30% 40%, rgba(59,130,246,0.25), transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(16,185,129,0.25), transparent 50%);
+}
+
+/* ENHANCED CARD STYLE */
+.card-hover {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(30px);
+    position: relative;
+    overflow: hidden;
+}
+.card-hover:hover {
+    transform: translateY(-12px);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: rgba(255,255,255,0.05);
+}
+
+/* USE CASE IMAGE STYLES */
+.use-case-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0.4;
+    transition: transform 0.6s ease;
+}
+.card-hover:hover .use-case-img {
+    transform: scale(1.1);
+    opacity: 0.6;
+}
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(14, 19, 23, 0.9) 20%, transparent 100%);
+    z-index: -1;
+}
+
+/* REFERENCE CARD */
+.reference-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    border-image: linear-gradient(90deg, #10b981, #3b82f6) 1;
+    padding: 40px 30px;
+    backdrop-filter: blur(25px);
+}
+
+/* BUTTON STYLING */
+.btn-modern {
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+.btn-modern:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+.section-padding { padding: 120px 6%; }
+.section-max { max-width: 1200px; margin: 0 auto; }
+
+/* USE CASE BENTO GRADIENTS */
+.use-case-1 { border-left: 4px solid #3b82f6; }
+.use-case-2 { border-top: 4px solid #10b981; }
+.use-case-3 { border-right: 4px solid #8b5cf6; }
+.use-case-4 { border-bottom: 4px solid #f43f5e; }
+
+/* FOOTER ANIMATIONS */
+@keyframes footerGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animated-footer {
+    background: linear-gradient(-45deg, #0e1317, #161e24, #10b98115, #3b82f615);
+    background-size: 400% 400%;
+    animation: footerGradient 15s ease infinite;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: snow;
+}
+
+.social-btn:hover {
+    transform: translateY(-8px) rotate(8deg);
+    background: rgba(255,255,255,0.1);
+}
+.social-btn.insta:hover { border-color: #e1306c; color: #e1306c; }
+.social-btn.linkedin:hover { border-color: #0077b5; color: #0077b5; }
+
+.footer-link-hover {
+    transition: all 0.3s ease;
+    position: relative;
+}
+.footer-link-hover:hover { color: #10b981; }
+</style>
+</head>
+
+<body class="grid-bg">
+
+<nav class="fixed w-full z-50 backdrop-blur-xl border-b border-white/5 px-10 py-5 flex justify-between items-center">
+    <div class="text-lg font-semibold tracking-wide uppercase nav-logo">
+        SMART ECO HOME <span class="text-emerald-400">SYSTEMS</span>
+    </div>
+    <div class="hidden md:flex gap-8 text-xs font-bold tracking-widest uppercase opacity-70">
+        <a href="#about" class="hover:text-emerald-400 transition">About Us</a>
+        <a href="#use-cases" class="hover:text-emerald-400 transition">Use Cases</a>
+        <a href="#product" class="hover:text-emerald-400 transition">Tech</a>
+    </div>
+    <a href="#contact" class="btn-modern !py-2 !px-4 text-xs">Investor Access</a>
+</nav>
+
+<section class="hero-glow min-h-screen flex flex-col justify-center items-center text-center relative px-6">
+    <h1 class="text-6xl md:text-8xl font-extrabold leading-snug mb-8 tracking-tight">
+        Smart Infrastructure <br>
+        <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
+            For Modern Living
+        </span>
+    </h1>
+    <p class="text-xl md:text-2xl max-w-3xl mb-12 font-light tracking-wide leading-relaxed text-gray-300">
+        Integrated climate, energy, and security management via a unified smart home platform. Minimalist, secure, and intelligently connected.
+    </p>
+    <div class="flex flex-col md:flex-row gap-6">
+        <button onclick="location.href='#contact'" class="btn-modern text-lg">Get In Touch</button>
+        <button onclick="location.href='#how-it-works'" class="btn-modern text-lg border-2 border-blue-500 !bg-transparent !text-white">System Diagram</button>
+    </div>
+</section>
+
+<section id="about" class="section-padding section-max border-y border-white/5">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+            <h2 class="text-5xl font-bold mb-8 leading-tight">Who We Are</h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                We are a collective of visionary engineers and designers dedicated to redefining the boundaries of domestic technology. Born from a passion for sustainability and cutting-edge AI, our team bridges the gap between complex infrastructure and human-centric design.
+            </p>
+            <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-emerald-500/10 rounded-lg text-emerald-400"><i class="fa-solid fa-microchip"></i></div>
+                    <div>
+                        <h4 class="font-bold">Innovation First</h4>
+                        <p class="text-sm text-gray-500">Constant R&D to stay ahead of the digital curve.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-blue-500/10 rounded-lg text-blue-400"><i class="fa-solid fa-leaf"></i></div>
+                    <div>
+                        <h4 class="font-bold">Eco-Centric</h4>
+                        <p class="text-sm text-gray-500">Every line of code is optimized for energy efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-hover p-12 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 border-blue-500/20">
+            <h3 class="text-2xl font-bold mb-4 italic text-white">"Our mission is to make every home a living, breathing, and thinking sanctuary."</h3>
+            <p class="text-gray-400">— The Smart Eco Team</p>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works" class="section-padding text-center section-max">
+    <h2 class="text-5xl font-bold mb-4 tracking-tight">How It Works</h2>
+    <p class="text-xl text-emerald-400 font-medium mb-12">Real-time monitoring, automation, and intelligent control.</p>
+    
+    <div class="card-hover p-4 md:p-10 bg-white/5 inline-block w-full">
+        <img src="assets/diagram.jpeg" alt="Smart Eco Home System Diagram" class="w-full rounded-xl shadow-2xl">
+    </div>
+</section>
+
+<section id="use-cases" class="section-padding section-max">
+    <div class="text-center mb-16">
+        <h2 class="text-5xl font-bold mb-4 tracking-tight">Use Cases</h2>
+        <p class="text-gray-400 text-lg">Our technology is designed for versatility across various living environments.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]">
+        <div class="md:col-span-2 md:row-span-2 card-hover use-case-1 p-8 flex flex-col justify-end">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" class="use-case-img" alt="Residential Complexes">
+            <div class="card-overlay"></div>
+            <i class="fa-solid fa-city text-5xl text-blue-400 mb-6"></i>
+            <h3 class="text-3xl font-bold mb-2 text-white">Residential Complexes</h3>
+            <p class="text-gray-300 max-w-md">Scalable infrastructure for multi-unit buildings, providing centralized management.</p>
+        </div>
+
+        <div class="md:col-span-1 md:row-span-1 card-hover use-case-2 p-8 flex flex-col justify-center items-center text-center">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=600" class="use-case-img" alt="Residential Homes">
+            <div class="card-overlay"></div>
+            <i class="fa-solid fa-house-chimney text-4xl text-emerald-400 mb-4"></i>
+            <h3 class="text-xl font-bold text-white">Residential Homes</h3>
+        </div>
+
+        <div class="md:col-span-1 md:row-span-2 card-hover use-case-3 p-8 flex flex-col justify-end">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" class="use-case-img" alt="Property Developers">
+            <div class="card-overlay"></div>
+            <i class="fa-solid fa-building-user text-4xl text-purple-400 mb-6"></i>
+            <h3 class="text-2xl font-bold mb-2 text-white">Property Developers</h3>
+            <p class="text-gray-300 text-sm">Empowering developers to deliver "future-ready" sustainable homes.</p>
+        </div>
+
+        <div class="md:col-span-1 md:row-span-1 card-hover use-case-4 p-8 flex flex-col justify-center items-center text-center">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=600" class="use-case-img" alt="Luxury Villas">
+            <div class="card-overlay"></div>
+            <i class="fa-solid fa-tree-city text-4xl text-rose-400 mb-4"></i>
+            <h3 class="text-xl font-bold text-white">Luxury Villas</h3>
+        </div>
+    </div>
+</section>
+
+<section id="product" class="section-padding text-center section-max">
+    <h2 class="text-5xl font-bold mb-16 tracking-tight">One Platform. Full Control.</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="flex flex-col items-center card-hover p-10">
+            <i class="fa-solid fa-kiwi-bird text-4xl text-blue-400 mb-5"></i>
+            <h4 class="font-bold text-xl mb-3 tracking-wide">AI</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">Advanced AI assistant that learns your habits and optimizes your home environment.</p>
+        </div>
+        <div class="flex flex-col items-center card-hover p-10">
+            <i class="fa-solid fa-shield-halved text-4xl text-emerald-400 mb-5"></i>
+            <h4 class="font-bold text-xl mb-3 tracking-wide">Security</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">End-to-end encryption and 24/7 active monitoring for total peace of mind.</p>
+        </div>
+        <div class="flex flex-col items-center card-hover p-10">
+            <i class="fa-solid fa-server text-4xl text-indigo-400 mb-5"></i>
+            <h4 class="font-bold text-xl mb-3 tracking-wide">Mainframe</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">Powerful hardware architecture managing the entire ecosystem from a single hub.</p>
+        </div>
+        <div class="flex flex-col items-center card-hover p-10">
+            <i class="fa-solid fa-palette text-4xl text-pink-400 mb-5"></i>
+            <h4 class="font-bold text-xl mb-3 tracking-wide">Theme Modes</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">Change the soul of your home with a single click, from UI to ambient lighting.</p>
+        </div>
+        <div class="flex flex-col items-center card-hover p-10">
+            <i class="fa-solid fa-video text-4xl text-blue-500 mb-5"></i>
+            <h4 class="font-bold text-xl mb-3 tracking-wide">Projection</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">Integrated cinema and presentation systems for a peak visual experience.</p>
+        </div>
+        <div class="flex flex-col items-center card-hover p-10">
+            <i class="fa-solid fa-wand-magic-sparkles text-4xl text-yellow-400 mb-5"></i>
+            <h4 class="font-bold text-xl mb-3 tracking-wide">Lighting Modes</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">Work, relax, or party; perfect lighting for every moment.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="packages" class="section-padding text-center section-max">
+    <h2 class="text-5xl font-bold mb-16 tracking-tight">Our Packages</h2>
+    <div class="flex flex-col md:flex-row gap-8 justify-center">
+        <div class="flex-1 card-hover p-8 border-b-4 border-emerald-500">
+            <i class="fa-solid fa-cogs text-4xl text-emerald-400 mb-4"></i>
+            <h3 class="font-bold text-2xl mb-4">Core Eco</h3>
+            <ul class="text-gray-300 space-y-3 text-left list-disc list-inside text-sm">
+                <li>Central Control Hub</li>
+                <li>Basic Energy Management</li>
+                <li>Smart Lighting Infrastructure</li>
+                <li>B2B & B2C Solutions</li>
+            </ul>
+        </div>
+        <div class="flex-1 card-hover p-8 border-b-4 border-blue-500">
+            <i class="fa-solid fa-house-laptop text-4xl text-blue-400 mb-4"></i>
+            <h3 class="font-bold text-2xl mb-4">Comfort</h3>
+            <ul class="text-gray-300 space-y-3 text-left list-disc list-inside text-sm">
+                <li>Advanced Scenario Programming</li>
+                <li>Premium Hardware Suite</li>
+                <li>Climate Automation</li>
+                <li>Personalized Dashboard</li>
+            </ul>
+        </div>
+        <div class="flex-1 card-hover p-8 border-b-4 border-purple-500">
+            <i class="fa-solid fa-gem text-4xl text-purple-400 mb-4"></i>
+            <h3 class="font-bold text-2xl mb-4">Premium</h3>
+            <ul class="text-gray-300 space-y-3 text-left list-disc list-inside text-sm">
+                <li>Full Customization Options</li>
+                <li>VIP Engineering & Setup</li>
+                <li>Cyber-Security Shield</li>
+                <li>24/7 Technical Support</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding text-center section-max">
+    <div class="reference-card max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">KKTC METU KALTEV Pre-Incubation Reference</h2>
+        <p class="text-lg text-gray-400 mb-8">Recognized for innovation and excellence by METU KALTEV.</p>
+        <img src="images/referans_sertifika.jpg" alt="METU KALTEV Certificate" class="w-full rounded-2xl shadow-xl border border-white/5 mb-10">
+        <a href="certificate.pdf" target="_blank" class="btn-modern">View Official Certificate</a>
+    </div>
+</section>
+
+<section id="contact" class="section-padding text-center section-max">
+    <h2 class="text-6xl font-bold mb-12 tracking-tight">Contact Us</h2>
+    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+        <a href="mailto:smartecohome@outlook.com" class="card-hover flex items-center gap-4 px-8 py-6 max-w-md w-full">
+            <i class="fa-solid fa-envelope text-3xl text-emerald-400"></i>
+            <div class="text-left">
+                <h4 class="font-bold text-xl">Email</h4>
+                <p class="text-gray-400 text-sm">smartecohome@outlook.com</p>
+            </div>
+        </a>
+        <a href="tel:+9005303601242" class="card-hover flex items-center gap-4 px-8 py-6 max-w-md w-full">
+            <i class="fa-solid fa-phone text-3xl text-blue-400"></i>
+            <div class="text-left">
+                <h4 class="font-bold text-xl">Phone</h4>
+                <p class="text-gray-400 text-sm">+90 530 360 12 42</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+<footer class="animated-footer py-20">
+    <div class="section-max px-10">
+        <div class="flex flex-col items-center gap-12">
+            
+            <div class="text-center">
+                <h2 class="text-3xl font-black tracking-tighter mb-2 italic">SMART ECO <span class="text-emerald-400">SYSTEMS</span></h2>
+                <p class="text-gray-400 font-light max-w-sm mx-auto text-sm">Innovating sustainable futures through intelligent infrastructure.</p>
+            </div>
+
+            <div class="flex gap-8">
+                <a href="https://www.instagram.com/smartecohomesystems/" target="_blank" class="social-btn insta">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/smart-eco-home-systems/" target="_blank" class="social-btn linkedin">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+                <a href="mailto:smartecohome@outlook.com" class="social-btn">
+                    <i class="fa-regular fa-envelope fa-lg"></i>
+                </a>
+            </div>
+
+            <div class="w-full pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-xs text-gray-500 tracking-widest uppercase">
+                    &copy; 2026 <span class="text-snow font-bold">Smart Eco Home Systems</span>. All Rights Reserved.
+                </p>
+                <div class="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="#" class="footer-link-hover">Privacy</a>
+                    <a href="#" class="footer-link-hover">Terms</a>
+                    <a href="#" class="footer-link-hover">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+<!-- ================================= -->
+<!-- AUTHOR -->
+<!-- ================================= -->
+
+<!--
+========================================
+        SYSTEM FILE INFORMATION
+========================================
+
+Author        : Ünsal Demircioğlu
+Co-Author     : Kerem Örenç
+GitHub        : https://github.com/unsaldemircioglu
+GitHub        : https://github.com/TheAllpha
+
+Project       : Web Project
+File          : index.html
+Status        : Active
+Version       : v1.0
+
+========================================
+-->
+
+<script>
+"use strict";
+
+/* Author Information */
+const authors = "Ünsal Demircioğlu, Kerem Örenç";
+const authorGithub1 = "Github: https://github.com/unsaldemircioglu";
+const authorGithub2 = "Github: https://github.com/TheAllpha";
+
+/* Console Output */
+console.log("=== SYSTEM AUTHOR INFO ===");
+console.log(authors);
+console.log(authorGithub1);
+console.log(authorGithub2);
+console.log(authorGithub1);
+console.log(authorGithub2);
+console.log(authorGithub1);
+console.log(authorGithub2);
+console.log("==========================");
+</script>
+<script>
+(function(){
+
+/* core array */
+const _0xA=[
+"console","log","warn","info",
+"Ünsal Demircioğlu","Kerem Örenç",
+"https://github.com/unsaldemircioglu",
+"https://github.com/TheAllpha",
+"SYSTEM CORE","AUTHOR VERIFIED",
+"ACCESS","GRANTED"
+];
+
+/* mapper */
+function _0xM(i){
+return _0xA[i];
+}
+
+/* random noise generator */
+function _0xnoise(len){
+let r=[];
+for(let i=0;i<len;i++){
+r.push(Math.floor(Math.random()*9999));
+}
+return r;
+}
+
+/* fake encrypt */
+function _0xenc(t){
+let out="";
+for(let i=0;i<t.length;i++){
+out+=String.fromCharCode(t.charCodeAt(i)+1);
+}
+return out;
+}
+
+/* fake decrypt */
+function _0xdec(t){
+let out="";
+for(let i=0;i<t.length;i++){
+out+=String.fromCharCode(t.charCodeAt(i)-1);
+}
+return out;
+}
+
+/* checksum */
+function _0xcheck(arr){
+let s=0;
+for(let i=0;i<arr.length;i++){
+s+=(arr[i]*7)%13;
+}
+return s;
+}
+
+/* long fake math block */
+function _0xmath(){
+let x=0;
+for(let i=0;i<100;i++){
+x+=Math.sin(i)*Math.cos(i/2)+Math.sqrt(i);
+}
+return x;
+}
+
+/* hash style function */
+function _0xhash(str){
+let h=0;
+for(let i=0;i<str.length;i++){
+h=(h<<5)-h+str.charCodeAt(i);
+h|=0;
+}
+return h;
+}
+
+/* fake cpu task */
+function _0xcycle(){
+let t=0;
+for(let i=0;i<200;i++){
+t+=i*i%17;
+}
+return t;
+}
+
+/* data build */
+const ownerA=_0xM(4);
+const ownerB=_0xM(5);
+const gitA=_0xM(6);
+const gitB=_0xM(7);
+
+/* encoded values */
+const encA=_0xenc(ownerA);
+const encB=_0xenc(ownerB);
+
+/* decode again */
+const realA=_0xdec(encA);
+const realB=_0xdec(encB);
+
+/* noise data */
+const noise=_0xnoise(80);
+
+/* checksum */
+const chk=_0xcheck(noise);
+
+/* calculations */
+const math=_0xmath();
+const cpu=_0xcycle();
+const hash=_0xhash(realA+realB);
+
+/* console output */
+window[_0xM(0)][_0xM(1)]("======== "+_0xM(8)+" ========");
+window[_0xM(0)][_0xM(1)](_0xM(9));
+window[_0xM(0)][_0xM(1)]("Owner:",realA,"&",realB);
+window[_0xM(0)][_0xM(1)](gitA);
+window[_0xM(0)][_0xM(1)](gitB);
+window[_0xM(0)][_0xM(1)](_0xM(10),_0xM(11));
+
+window[_0xM(0)][_0xM(3)]("checksum:",chk);
+window[_0xM(0)][_0xM(3)]("math:",math);
+window[_0xM(0)][_0xM(3)]("cpu:",cpu);
+window[_0xM(0)][_0xM(3)]("hash:",hash);
+
+/* extra fake loops */
+(function(){
+let a=0;
+for(let i=0;i<150;i++){
+a+=Math.random()*i;
+}
+console.log("sys-noise:",a.toFixed(2));
+})();
+
+/* second block */
+(function(){
+let buffer=[];
+for(let i=0;i<120;i++){
+buffer.push((i*i)%97);
+}
+let total=buffer.reduce((a,b)=>a+b,0);
+console.log("buffer-check:",total);
+})();
+
+/* third block */
+(function(){
+const msg=[
+"Protected Source",
+"Signature Active",
+"Owner Locked",
+"Integrity OK"
+];
+for(let i=0;i<msg.length;i++){
+setTimeout(()=>{
+console.log(msg[i]);
+},i*250);
+}
+})();
+
+/* fake watcher */
+(function(){
+let t=Date.now();
+let diff=0;
+for(let i=0;i<500;i++){
+diff+=i%3;
+}
+if(diff>0){
+console.info("runtime:",Date.now()-t,"ms");
+}
+})();
+
+/* random tasks */
+(function(){
+let arr=[];
+for(let i=0;i<200;i++){
+arr.push(Math.random());
+}
+arr.sort();
+console.log("array-task:",arr.length);
+})();
+
+/* system footer */
+console.log("======== END CORE ========");
+
+})();
+</script>
+</html>
